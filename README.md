@@ -1,4 +1,4 @@
-# test-primo
+# Test number prime or not
 
 ## Project setup
 ```
