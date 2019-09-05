@@ -1,28 +1,49 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-layout text-center wrap>
+      <v-card width="200" class="mx-auto" >
+        <v-form v-model="valid">
+          <v-container>
+            <v-row>
+              <v-col cols="12" md="12">
+                ¿Es primo?
+                <v-text-field
+                  type="number"
+                  v-model="num"
+                  label="Número"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-form>
+        <v-card-actions>
+          {{numeroPrimo}}
+        </v-card-actions>
+      </v-card>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  data: () => ({
+    num : ''
+  }),
+  methods: {
+  },
+  computed: {
+    numeroPrimo () {
+      let number = parseInt(this.num);
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+      if(!number) { return; }
+
+      for (var i = 2; i < number; i++) {
+        if (number % i === 0) { return '🚀'; }
+      }
+
+      return number !== 1 ? '🐵' : '🚀';
+    }
+  }
+};
+</script>
